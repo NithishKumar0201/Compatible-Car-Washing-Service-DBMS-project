@@ -1,0 +1,88 @@
+PROCEDURES:
+
+-- to add amount in total price for a particular customer
+-- m for pay_id and n for amount
+
+create or replace procedure add(m in number,n in number)
+is
+begin
+update payment
+set total_price = total_price + n
+where pay_id = m;
+end;
+/
+-- to execute procedure
+
+declare
+m number := &m;
+n number := &n;
+begin
+add(m,n);
+end;
+/
+-------------------------------------------------
+
+
+-- to subtract amount in total price for a particular customer
+-- m for pay_id and n for amount
+
+create or replace procedure sub(m in number,n in number)
+is
+begin
+update payment
+set total_price = total_price - n
+where pay_id = m;
+end;
+/
+-- to execute procedure
+
+declare
+m number := &m;
+n number := &n;
+begin
+sub(m,n);
+end;
+/
+------------------------------------------------
+
+-- to specify tinkering (selected or not selected) in a specified service
+-- m for service_id and n for 'selected' or 'not selected'
+
+create or replace procedure tin(m in number,n in varchar)
+is
+begin
+update service
+set tinkering = n
+where service_id = m;
+end;
+/
+-- to execute procedure
+declare
+m number := &m;
+n varchar := &n;
+begin
+tin(m,n);
+end;
+/
+-------------------------------------------------
+
+-- to change district of a specified employee
+-- m for emp_id and n for district
+
+create or replace procedure ed(m in number,n in varchar)
+is
+begin
+update employee
+set district = n
+where emp_id = m;
+end;
+/
+-- to execute procedure
+declare
+m number := &m;
+n varchar := &n;
+begin
+ed(m,n);
+end;
+/
+----------------------------------------------
